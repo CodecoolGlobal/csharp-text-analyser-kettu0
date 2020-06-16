@@ -6,7 +6,8 @@ namespace csharp_text_analyser_kettu0
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            FileContent textToExamine = new FileContent("test2.txt");
+            StatisticalAnalysis characterAnalysis = new StatisticalAnalysis(textToExamine.CharIterator());
         }
     }
 }

@@ -5,24 +5,25 @@ namespace csharp_text_analyser_kettu0
 {
     public class StatisticalAnalysis
     {
+        private Iterator _iterator;
         public StatisticalAnalysis(Iterator iterator)
         {
-
+            this._iterator = iterator;
         }
 
         public Int32 CountOf(string[] textArray)
         {
-            return 0;
+           throw new System.NotImplementedException();
         }
 
         public Int32 DictionarySize()
         {
-            return 0;
+           throw new System.NotImplementedException();
         }
 
         public Int32 Size()
         {
-            return 0;
+           throw new System.NotImplementedException();
         }
 
         public ISet<string> OccurMoreThan(Int32 number)
