@@ -30,31 +30,28 @@ namespace csharp_text_analyser_kettu0
         public string MoveNext()
         {
             string word = "";
-            do
-            {
-                _currentPosition += _nextStep;
-                
-            }
-            while (!_charList.Contains(_fileContents[_currentPosition]) && HasNext() == true);
 
             do
             {
                 _currentPosition += _nextStep;
-                
+            }
+            while (!_charList.Contains(_fileContents[_currentPosition]) && HasNext() == true);
+
+            while (_charList.Contains(_fileContents[_currentPosition]))
+            {
+                word += _fileContents[_currentPosition];
                 if (HasNext() == true)
                 {
-                    word += _fileContents[_currentPosition];
+                    _currentPosition += _nextStep;
                 }
                 else
                 {
                     return word;
                 }
+            }
 
-            } 
-            while (_charList.Contains(_fileContents[_currentPosition]));
-            return word;
+        return word;
         }
-
         public void Reset()
         {
             this._currentPosition = -1;

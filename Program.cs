@@ -13,6 +13,7 @@ namespace csharp_text_analyser_kettu0
             Console.WriteLine(textToExamine.GetFilename());
             Console.WriteLine($"Number of characters: {characterAnalysis.Size()}");
             Console.WriteLine($"Number of words: {wordAnalysis.Size()}");
+            Console.WriteLine($"Author's dictionary: {wordAnalysis.DictionarySize()}");
         }
     }
 }
