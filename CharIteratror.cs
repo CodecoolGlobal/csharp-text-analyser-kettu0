@@ -9,20 +9,17 @@ namespace csharp_text_analyser_kettu0
         private FileContent _fileContents;
         private Int32 _currentPosition;
         private Int32 _nextStep;
-        private List<string> _charList;
+        private List<string> _charList= new List<string>{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
         public CharIterator(FileContent fileContent)
         {
-            this._currentPosition = 0;
+            this._currentPosition = -1;
             this._nextStep = 1;
             this._fileContents = fileContent;
-            this._charList = new List<string>{"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","R","S","T","U","W","X","Y","Z"};
         }
 
         public bool HasNext()
         {
-            _currentPosition += _nextStep;
-
-            if (_currentPosition - 1 == _fileContents.GetFileContentLength())
+            if (_currentPosition == _fileContents.GetFileContentLength()-1)
             {
                 return false;
             }
@@ -34,15 +31,19 @@ namespace csharp_text_analyser_kettu0
             do 
             {
                 _currentPosition += _nextStep;
+
+
             }
-            while (HasNext() == false && !_charList.Contains(_fileContents[_currentPosition]));
+            while (HasNext() == true && !_charList.Contains(_fileContents[_currentPosition]));
             return _fileContents[_currentPosition];
         }
 
         public void Reset()
         {
-         this._currentPosition = 0;   
+         this._currentPosition = -1;   
         }
+
+
     }
 }
 

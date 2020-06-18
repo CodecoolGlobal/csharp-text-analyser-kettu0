@@ -23,7 +23,14 @@ namespace csharp_text_analyser_kettu0
 
         public Int32 Size()
         {
-           throw new System.NotImplementedException();
+           Int32 counter = 0;
+           while (_iterator.HasNext() == true)
+           {
+              _iterator.MoveNext();
+              counter += 1;
+           }
+            _iterator.Reset();
+           return counter;
         }
 
         public ISet<string> OccurMoreThan(Int32 number)

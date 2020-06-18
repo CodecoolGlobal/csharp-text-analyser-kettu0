@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace csharp_text_analyser_kettu0
 {
@@ -7,39 +8,58 @@ namespace csharp_text_analyser_kettu0
     {
         private Int32 _currentPosition;
         private Int32 _nextStep;
+        private List<string> _charList= new List<string>{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
         private FileContent _fileContents;
         
         public WordIterator(FileContent fileContent)
         {
-            this._currentPosition = 0;
+            this._currentPosition = -1;
             this._nextStep = 1;
             this._fileContents = fileContent;
             
         }
         public bool HasNext()
         {
-            if (_currentPosition - 1 == _fileContents.GetFileContentLength())
+            if (_currentPosition == _fileContents.GetFileContentLength() - 1)
             {
-                return false;
+                return false;  
             }
             return true;
         }
 
         public string MoveNext()
         {
+            string word = "";
             do
             {
                 _currentPosition += _nextStep;
+                
             }
+            while (!_charList.Contains(_fileContents[_currentPosition]) && HasNext() == true);
 
-            while (HasNext() == false);
-            return _fileContents[_currentPosition];
+            do
+            {
+                _currentPosition += _nextStep;
+                
+                if (HasNext() == true)
+                {
+                    word += _fileContents[_currentPosition];
+                }
+                else
+                {
+                    return word;
+                }
+
+            } 
+            while (_charList.Contains(_fileContents[_currentPosition]));
+            return word;
         }
-        
+
         public void Reset()
         {
-            this._currentPosition = 0;
+            this._currentPosition = -1;
         }
+
     }
 }
 

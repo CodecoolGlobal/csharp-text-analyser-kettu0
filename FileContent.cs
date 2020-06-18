@@ -7,6 +7,7 @@ namespace csharp_text_analyser_kettu0
     
     {
         private string _textFile;
+        private string _textTitle;
         public string this[Int32 index]
         {  
             get { return _textFile.ToUpper()[index].ToString(); }
@@ -15,6 +16,13 @@ namespace csharp_text_analyser_kettu0
         public FileContent(string textFile)
         {
             this._textFile = (File.ReadAllText(textFile)).ToUpper();
+            
+        }
+
+        public FileContent(string textFile, string textTitle)
+            : this(textFile)
+        {
+            this._textTitle = textTitle;
         }
 
         public Iterator CharIterator()
@@ -27,16 +35,15 @@ namespace csharp_text_analyser_kettu0
             return new WordIterator(this);
         }
 
-        public string GetFilename(string textFile)
+        public string GetFilename()
         {
-            return Path.GetFileName(textFile);
+            return Path.GetFileName(_textTitle);
         }
 
         public Int32 GetFileContentLength()
         {
             return _textFile.Length;
         }
-
 
     }
 
