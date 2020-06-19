@@ -144,10 +144,19 @@ namespace csharp_text_analyser_kettu0
          return itemsOccurance;
       }
 
-      public List<string> MostUsedWords()
+      public List<string> MostUsedItems()
       {
-         List<string> mostUsedWords = new List<string>();
-         var elementProcentage = eachLetterProcentage();
+         List<string> mostUsedItems = new List<string>();
+         var itemProcentage = eachItemProcentage();
+
+         foreach (string item in itemProcentage.Keys)
+         {
+            if (itemProcentage[item] > 1)
+            {
+               mostUsedItems.Add(item);
+            }
+         }
+      return mostUsedItems;
       }
       public void Print(Dictionary<string, double> contentDictionary)
       {
@@ -156,6 +165,19 @@ namespace csharp_text_analyser_kettu0
                 Console.Write($"[{key} -> {contentDictionary[key].ToString("F2")}] ");
             }
             Console.WriteLine();
+      }
+      public void Print(string label, List<string> contentList)
+      {
+            string contentString = "";
+            contentList.Sort();
+
+            foreach (string content in contentList)
+            {
+                contentString += content + ", ";
+            }
+
+            Console.WriteLine($"{label}: [{contentString.TrimEnd(new char[] {',', ' '})}]");
+
       }
       
       public ISet<string> OccurMoreThan(Int32 number)
