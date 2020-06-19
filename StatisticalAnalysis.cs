@@ -114,37 +114,41 @@ namespace csharp_text_analyser_kettu0
          return AEDictionary["A"]/AEDictionary["E"];
       }
 
-      public Dictionary<string, double> eachLetterProcentage()
+      public Dictionary<string, double> eachItemProcentage()
       {
-         Dictionary<string, double> lettersOccurance = new Dictionary<string, double>();
+         Dictionary<string, double> itemsOccurance = new Dictionary<string, double>();
          
-         int allLetters = this.Size();
+         int allitems = this.Size();
 
          while (_iterator.HasNext() == true)
          {
-            string letter = _iterator.MoveNext();
+            string item = _iterator.MoveNext();
 
-            if (!lettersOccurance.ContainsKey(letter))
+            if (!itemsOccurance.ContainsKey(item))
             {
-               lettersOccurance.Add(letter, 1);
+               itemsOccurance.Add(item, 1);
             }
-            else if (lettersOccurance.ContainsKey(letter))
+            else if (itemsOccurance.ContainsKey(item))
             {
-               lettersOccurance[letter]++;
+               itemsOccurance[item]++;
             }
          }
          _iterator.Reset();
 
-         List<string> lettersProcentage = new List<string>(lettersOccurance.Keys);
+         List<string> itemProcentage = new List<string>(itemsOccurance.Keys);
 
-         foreach(string usedLetter in lettersProcentage)
+         foreach(string usedItem in itemProcentage)
          {  
-            lettersOccurance[usedLetter] = (lettersOccurance[usedLetter] / allLetters) * 100;
+            itemsOccurance[usedItem] = (itemsOccurance[usedItem] / allitems) * 100;
          }
-         return lettersOccurance;
+         return itemsOccurance;
       }
 
-      public void 
+      public List<string> MostUsedWords()
+      {
+         List<string> mostUsedWords = new List<string>();
+         var elementProcentage = eachLetterProcentage();
+      }
       public void Print(Dictionary<string, double> contentDictionary)
       {
             foreach (string key in contentDictionary.Keys)
