@@ -71,11 +71,60 @@ namespace csharp_text_analyser_kettu0
          return counter;
       }
 
+      public decimal vowelsProcentage()
+      {
+         List<string> vowels = new List<string>{"A", "E", "I", "O", "U", "Y"};
+         Dictionary<string, int> vowelsAndConsonants = new Dictionary<string, int>{{"Consonants", 0}, {"Vowels", 0}};
+         while (_iterator.HasNext() == true)
+         {
+            string character = _iterator.MoveNext();
+
+               if (vowels.Contains(character))
+               {
+                  vowelsAndConsonants["Vowels"]++;
+               }
+               else if (!vowels.Contains(character))
+               {
+                  vowelsAndConsonants["Consonants"]++;
+               }
+         }
+         _iterator.Reset();
+
+         int allLetters = vowelsAndConsonants["Vowels"] + vowelsAndConsonants["Consonants"];
+
+         return (vowelsAndConsonants["Vowels"] * 100) / allLetters;
+      }
+
+
       public ISet<string> OccurMoreThan(Int32 number)
       {
-         throw new System.NotImplementedException();
+         Dictionary<string, int> countOfElements = new Dictionary<string, int>();
+         var listOfElements = new SortedSet<string>();
+         while (_iterator.HasNext() == true)
+         {
+            string element = _iterator.MoveNext();
+            if (!countOfElements.ContainsKey(element))
+            {
+               countOfElements.Add(element, 1);
+            }
+            else if (countOfElements.ContainsKey(element))
+            {
+               countOfElements[element]++;
+            }
+         }
+
+         _iterator.Reset();
+
+         foreach (KeyValuePair<string, int> instance in countOfElements)
+         {
+            if (instance.Value > number)
+            {
+               listOfElements.Add(instance.Key);
+            }
+         }
+         return listOfElements;
       }
-    }
+   
 
-
+   }
 }
