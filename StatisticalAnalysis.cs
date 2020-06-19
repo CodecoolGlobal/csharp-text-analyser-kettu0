@@ -71,10 +71,10 @@ namespace csharp_text_analyser_kettu0
          return counter;
       }
 
-      public decimal vowelsProcentage()
+      public double vowelsProcentage()
       {
          List<string> vowels = new List<string>{"A", "E", "I", "O", "U", "Y"};
-         Dictionary<string, int> vowelsAndConsonants = new Dictionary<string, int>{{"Consonants", 0}, {"Vowels", 0}};
+         Dictionary<string, double> vowelsAndConsonants = new Dictionary<string, double>{{"Consonants", 0}, {"Vowels", 0}};
          while (_iterator.HasNext() == true)
          {
             string character = _iterator.MoveNext();
@@ -90,12 +90,70 @@ namespace csharp_text_analyser_kettu0
          }
          _iterator.Reset();
 
-         int allLetters = vowelsAndConsonants["Vowels"] + vowelsAndConsonants["Consonants"];
-
+         int allLetters = this.Size();
          return (vowelsAndConsonants["Vowels"] * 100) / allLetters;
       }
 
+      public double AERatio()
+      {
+         Dictionary<string, double> AEDictionary = new Dictionary<string, double>{{"A", 0}, {"E", 0}};
+         while (_iterator.HasNext() == true)
+         {
+            string letter = _iterator.MoveNext();
 
+            if (letter == "A")
+            {
+               AEDictionary["A"]++;
+            }
+            else if (letter == "E")
+            {
+               AEDictionary["E"]++;
+            }
+         }
+         _iterator.Reset();
+         return AEDictionary["A"]/AEDictionary["E"];
+      }
+
+      public Dictionary<string, double> eachLetterProcentage()
+      {
+         Dictionary<string, double> lettersOccurance = new Dictionary<string, double>();
+         
+         int allLetters = this.Size();
+
+         while (_iterator.HasNext() == true)
+         {
+            string letter = _iterator.MoveNext();
+
+            if (!lettersOccurance.ContainsKey(letter))
+            {
+               lettersOccurance.Add(letter, 1);
+            }
+            else if (lettersOccurance.ContainsKey(letter))
+            {
+               lettersOccurance[letter]++;
+            }
+         }
+         _iterator.Reset();
+
+         List<string> lettersProcentage = new List<string>(lettersOccurance.Keys);
+
+         foreach(string usedLetter in lettersProcentage)
+         {  
+            lettersOccurance[usedLetter] = (lettersOccurance[usedLetter] / allLetters) * 100;
+         }
+         return lettersOccurance;
+      }
+
+      public void 
+      public void Print(Dictionary<string, double> contentDictionary)
+      {
+            foreach (string key in contentDictionary.Keys)
+            {
+                Console.Write($"[{key} -> {contentDictionary[key].ToString("F2")}] ");
+            }
+            Console.WriteLine();
+      }
+      
       public ISet<string> OccurMoreThan(Int32 number)
       {
          Dictionary<string, int> countOfElements = new Dictionary<string, int>();

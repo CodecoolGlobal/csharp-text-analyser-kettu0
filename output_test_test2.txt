@@ -9,6 +9,7 @@ Most used words (>1%): [a,and,as,been,but,figure,had,i,in,is,it,me,music,no,not,
 vowels %: 38
 'a:e count ratio' : 1.43
 [ T -> 9.31] [ H -> 5.63] [ I -> 6.79] [ S -> 6.11] [ A -> 7.95] [ E -> 13.87] [ F -> 2.04] [ L -> 2.91] [ O -> 7.37] [ W -> 3.78] [ V -> 1.07] [ R -> 5.53] [ Y -> 1.26] [ U -> 3.01] [ M -> 2.62] [ G -> 2.23] [ N -> 7.95] [ D -> 5.14] [ X -> 0.10] [ P -> 0.97] [ C -> 1.94] [ B -> 1.65] [ K -> 0.58] [ Q -> 0.10] [ J -> 0.10]
+
 ==test2.txt==
 Char count: 939
 Word count: 235
