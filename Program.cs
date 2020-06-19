@@ -18,9 +18,6 @@ namespace csharp_text_analyser_kettu0
             Console.WriteLine($"Count of word 'the': {wordAnalysis.CountOf("the")}");
             Console.WriteLine($"Vowels %: {characterAnalysis.vowelsProcentage()}");
             Console.WriteLine($"a:e ratio: {characterAnalysis.AERatio()}");
-            characterAnalysis.Print(characterAnalysis.eachItemProcentage());
-            wordAnalysis.Print("Most used words (>1%)", wordAnalysis.MostUsedItems());
- 
 
         }
     }

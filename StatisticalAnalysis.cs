@@ -158,27 +158,7 @@ namespace csharp_text_analyser_kettu0
          }
       return mostUsedItems;
       }
-      public void Print(Dictionary<string, double> contentDictionary)
-      {
-            foreach (string key in contentDictionary.Keys)
-            {
-                Console.Write($"[{key} -> {contentDictionary[key].ToString("F2")}] ");
-            }
-            Console.WriteLine();
-      }
-      public void Print(string label, List<string> contentList)
-      {
-            string contentString = "";
-            contentList.Sort();
-
-            foreach (string content in contentList)
-            {
-                contentString += content + ", ";
-            }
-
-            Console.WriteLine($"{label}: [{contentString.TrimEnd(new char[] {',', ' '})}]");
-
-      }
+      
       
       public ISet<string> OccurMoreThan(Int32 number)
       {
