@@ -7,13 +7,14 @@ namespace csharp_text_analyser_kettu0
     {
         static void Main(string[] args)
         {
-            FileContent textToExamine = new FileContent("test2.txt", "test2.txt");
+            FileContent textToExamine = new FileContent("test.txt", "test.txt");
             StatisticalAnalysis characterAnalysis = new StatisticalAnalysis(textToExamine.CharIterator());
             StatisticalAnalysis wordAnalysis = new StatisticalAnalysis(textToExamine.WordIterator());           
             Console.WriteLine(textToExamine.GetFilename());
             Console.WriteLine($"Number of characters: {characterAnalysis.Size()}");
             Console.WriteLine($"Number of words: {wordAnalysis.Size()}");
             Console.WriteLine($"Author's dictionary: {wordAnalysis.DictionarySize()}");
+            Console.WriteLine($"Count of word 'the': {wordAnalysis.CountOf("the")}");
         }
     }
 }

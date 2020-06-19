@@ -11,10 +11,26 @@ namespace csharp_text_analyser_kettu0
             this._iterator = iterator;
         }
 
-        public Int32 CountOf(string[] textArray)
-        {
-           throw new System.NotImplementedException();
-        }
+        public Int32 CountOf(params string[] wordsToCheck)
+   
+         {
+            int wordCounter = 0;
+               
+            foreach(string wordToCheck in wordsToCheck)
+            {
+               while(_iterator.HasNext() == true)
+               {
+                  string word = _iterator.MoveNext();
+                  if (word == wordToCheck.ToUpper())
+                  {
+                     wordCounter += 1;
+                  }
+               }
+            _iterator.Reset();
+            }
+
+         return wordCounter;
+         }
 
       public Int32 DictionarySize()
       {
