@@ -17,10 +17,10 @@ public class View
 
     public void Print(Dictionary<string, double> dictionaryStatistics, string message)
     {
-        Console.WriteLine($"{message}");
+        Console.WriteLine($"{message}: ");
         foreach (string dictionaryKey in dictionaryStatistics.Keys)
         {
-            Console.WriteLine($"[{dictionaryKey} -> {dictionaryStatistics.Values}]");
+            Console.WriteLine($"[{dictionaryKey} -> {dictionaryStatistics[dictionaryKey].ToString("F2")}]");
         }
     }
 
@@ -38,7 +38,7 @@ public class View
     
     public void Print(ISet<string> setStatistics, string message)
     {
-        Console.WriteLine($"{message}");
+        Console.WriteLine($"{message}: ");
         foreach (string element in setStatistics)
         {
             Console.WriteLine($"{element}, ");
