@@ -1,21 +1,21 @@
 using System;
 using System.IO;
-
+//this.charArray = _text.Replace(" ", String.Empty).ToCharArray(); 
 namespace csharp_text_analyser_kettu0
 {
     public class FileContent : IterableText
     
     {
-        private string _textFile;
+        private char[] _textFile;
         private string _textTitle;
         public string this[Int32 index]
         {  
-            get { return _textFile.ToUpper()[index].ToString(); }
+            get { return _textFile[index].ToString();}
         }  
 
         public FileContent(string textFile)
         {
-            this._textFile = (File.ReadAllText(textFile)).ToUpper();
+            this._textFile = (File.ReadAllText(textFile)).ToUpper().ToCharArray();
             
         }
 
